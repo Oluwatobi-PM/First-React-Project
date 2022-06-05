@@ -4,17 +4,19 @@ import FeedbackContext from "../context/FeedbackContext"
 function RatingSelect({select}) {
   const [selected, setSelected] = useState(10)  
 
+  const handleChange = (e) => {
+      setSelected(+e.currentTarget.value)
+      select(selected)
+  }
+
+  
   const {feedbackEdit} = useContext(FeedbackContext)
 
   useEffect(() => {
     setSelected(feedbackEdit.item.rating)
   }, [feedbackEdit])
 
-  const handleChange = (e) => {
-      setSelected(+e.target.value)
-      select(+e.target.value)
-  }
-
+  
   return (
     <ul className='rating'>
         <li>
@@ -105,27 +107,27 @@ function RatingSelect({select}) {
             />
             <label htmlFor='num8'>8</label>
         </li>
-        <li>
-            <input
+       <li>
+           <input
                 type = 'radio'
-                id='num1'
+                id='num9'
                 name='rating'
                 value='9'
                 onChange={handleChange}
                 checked={selected === 9}
             />
-            <label htmlFor='num9'>9</label>
-        </li>
+        <label htmlFor='num9'>9</label>
+       </li>
         <li>
             <input
                 type = 'radio'
-                id='num1'
+                id='num10'
                 name='rating'
-                value='10'
+                value = '10'
                 onChange={handleChange}
                 checked={selected === 10}
             />
-            <label htmlFor='num10'>10</label>
+        <label htmlFor='num10'>10</label>
         </li>
         
     </ul>
